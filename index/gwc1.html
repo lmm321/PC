@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div,ul,li{margin:0; padding:0;}
+        li{ list-style:none;}
+
+        #app{ width:100%; margin:100px auto;}
+        #app h1{ text-align: center;}
+        #app #list li{ height:50px; background: #cccccc; margin-top:10px; padding:0 10px; line-height: 50px; cursor:pointer;}
+        #app #list li .product-name{ float:left;}
+        #app #list li .product-price{ float:right;}
+
+        #app #list .red{background: #ff0000;}
+    </style>
+</head>
+<body>
+ <div id="app">
+     <h1>购物车</h1>
+     <hr />
+     <ul id="list">
+         <li v-for="(product, index) in productList" :class="{red: product.isRed}" @click="select(product)">
+              <img :src="product.img" alt=""> 
+              <span class="product-name">{{index+1}}. {{product.name}}</span>
+             <span class="product-price">{{product.price}}</span>
+             <span class="zj">{{product.zj}}</span>
+         </li>
+     </ul>
+     <div id="total">
+         <!-- 总价: {{total}} --> <!--求总价的方法一-->
+         结算: {{sum()}}
+     </div>
+ </div>   
+
+ <script src="js/vue.js"></script>
+ <script>
+ new Vue({
+     el: '#app',
+     data: {
+         productList: [
+             {
+                 'name': 'Satin Arriga Mules,37',
+                 'price': 2895.00,
+                 'img':'../images/ggx.jpg',
+                 'isRed': false,
+                 'zj': 2895.00,
+             },
+             {
+                 'name': 'LV路易威登',
+                 'price': 4995.00,
+                 'img':'../images/lywd.jpg',
+                 'isRed': false,
+                 'zj': 4995.00,
+             },
+             {
+                 'name': 'Dior',
+                 'price': 2895.00,
+                 'img':'../images/Diorx.jpg',
+                 'isRed': false,
+                 'zj':2895.00,
+             },
+             {
+                 'name': 'Gucci古驰',
+                 'price': 3095.00,
+                 'img':'../images/gc.jpg',
+                 'isRed': false,
+                 'zj':3095.00,
+             },
+         ],
+          total: 0, //总价
+
+     },
+ });
+ </script>
+</body>
+</html>
